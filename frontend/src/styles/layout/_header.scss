@@ -1,25 +1,29 @@
-
+body{
+    background: #bf431f;
+  }
   body::before{
     display:block;
     content: "";
-    height: 7rem;
+   
   }
-  
-  .header {
-    background: #BF431F;
-  
-  
-  
+.navbar {
+  background: #bf431f;
+
+  .navbar-items {
+    margin-right: 18rem;
     .nav-item {
       font-size: 1rem;
-      font-weight: 600;
-      
-      
-    }
-    .navbar-items{
-      margin-right: 15rem;
-    }
-    .nav-link{
-        color: #F4E8CE;
+      font-weight: 700;
+
+      .nav-link {
+        color: #f4e8ce;
+      }
     }
   }
+
+  @media (min-width: 768px) {
+    .logo {
+      margin-left: 17rem;
+    }
+  }
+}
