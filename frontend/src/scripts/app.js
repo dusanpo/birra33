@@ -13,19 +13,19 @@ function getData(results) {
   let generatedHTML = "";
   results.map(result => {
     generatedHTML += `
-  <div class="col-md-4">
-  <div class="card text-center">
-<div class="card-body bg-primary text-white">
-<img class="card-img-top" src=${result.image_url} alt="">
-<p>  Some text</p>
-</div>
-<div class="card-footer">
-<h5>
-<a href="#" class="pt-3"> Add to Card</a>
-</h5>
-</div>
+    <div class="col-md-4">
+    <div class="card text-center cards">
+      <div class="card-body card-main">
+        <img class="card-img-top" src=${result.image_url} alt="image" />
+        <p>$${result.abv}</p>
+      </div>
+      <div class="card-footer card-bottom">
+        <h5>
+       <button class="w-100">Add to Card</button>
+        </h5>
+      </div>
+    </div>
   </div>
-</div>
   
   `;
   });
