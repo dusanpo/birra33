@@ -1,7 +1,20 @@
-.main{
-   padding-top: 5rem;
-    background-color: #F4E8CE;
-    .card{
-        margin-right: 1rem;
+.main {
+  padding-top: 5rem;
+  background-color: #f4e8ce;
+  .card {
+    margin-right: 1rem;
+    width: 18rem;
+    height: 28rem;
+    margin-bottom: 2rem;
+
+    img {
+      width: 6rem;
+      height: 19rem;
+      display: block;
+      margin: 0 auto;
     }
+    p {
+      margin-top: 1rem;
+    }
+  }
 }
