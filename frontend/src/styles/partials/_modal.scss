@@ -1,0 +1,49 @@
+.modal-style {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  .modal-content {
+    color: #d57f2c;
+    background-color: #e3cfab;
+    margin: 20% auto;
+    width: 70%;
+    animation-name: modal;
+    animation-duration: 1s;
+    .close-btn {
+      font-size: 2rem;
+      float: right;
+      &:hover {
+        color: #000;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    .header-modal {
+      padding: 1rem;
+      h2 {
+        margin: 0;
+      }
+    }
+    .body-modal {
+      padding: 0.8rem 1.3rem;
+    }
+    .footer-modal{
+        padding: 1rem;
+    }
+  }
+  @keyframes modal {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+
+  .list-wrapper {
+    background-color: #e3cfab;
+    padding: 3rem 0;
+    p{
+      font-size: 18px;
+      text-transform: uppercase;
+      font-family: "Alegreya", serif;
+      color:#bf431f;
+      font-weight: 700;
+    }
+    li {
+      list-style-type: none;
+      color: #533c32;
+      font-size: 14px;
+      font-weight: 500;
+      &:hover{
+        color: #e1a03a;
+        cursor:pointer;
+      }
+      i{
+        color: #e1a03a;
+        margin-right: 0.5rem;
+        font-size: 11px;
+      }
+    }
+  }
