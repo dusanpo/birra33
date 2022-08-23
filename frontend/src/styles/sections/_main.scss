@@ -1,32 +1,7 @@
 .main {
   padding-top: 5rem;
   background-color: #f4e8ce;
-  .list-wrapper {
-    background-color: #e3cfab;
-    padding: 3rem 0;
-    p{
-      font-size: 18px;
-      text-transform: uppercase;
-      font-family: "Alegreya", serif;
-      color:#bf431f;
-      font-weight: 700;
-    }
-    li {
-      list-style-type: none;
-      color: #533c32;
-      font-size: 14px;
-      font-weight: 500;
-      &:hover{
-        color: #e1a03a;
-        cursor:pointer;
-      }
-      i{
-        color: #e1a03a;
-        margin-right: 0.5rem;
-        font-size: 11px;
-      }
-    }
-  }
+
   .card-wrapper {
     margin-left: 1rem;
     .cards {
@@ -35,6 +10,7 @@
       margin-bottom: 5rem;
       .card-main {
         background-color: #e3cfab;
+        position:relative;
         &:hover {
           background-color: #f4e8ce;
         }
@@ -50,6 +26,21 @@
           font-size: 14px;
           font-weight: 600;
           font-family: "Fira Sans";
+        }
+        .logo{
+          position:absolute;
+          top: 50%;
+          left: 40%;
+          cursor: pointer;
+          opacity: 0;
+          transition: transform ease 250ms;
+          &:hover{
+            opacity: 1;
+            color: #fff;
+            transform: translate(0, -2rem);
+            filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+            
+          }
         }
       }
       .card-bottom {
