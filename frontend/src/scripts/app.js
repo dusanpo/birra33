@@ -4,26 +4,32 @@ const modalShow = document.querySelector(".modal-style");
 const inpSearch = document.getElementById("inp-search");
 
 document.addEventListener("click", function () {
-  const cards = document.querySelector(".cards");
-  //console.log(cards);
-  cards.addEventListener("click", openModal);
+  const cards = document.querySelectorAll(".cards");
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].addEventListener("click", openModal);
+  }
+
   document.querySelector(".close-btn").addEventListener("click", closeModal);
 });
 
 inpSearch.addEventListener("change", () => {
-  let searchQuery = inpSearch.value;
+  let searchQuery = inpSearch.value.trim();
   fetchApi(searchQuery);
 });
 
 async function fetchApi(query) {
   let response;
+
   if (query) {
-    response = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${query}`);
+    response = await fetch(
+      `https://api.punkapi.com/v2/beers?beer_name=${query}`
+    );
   } else {
     response = await fetch(`https://api.punkapi.com/v2/beers`);
   }
   let results = await response.json();
   console.log(results);
+ 
 
   cardWrapper.innerHTML = "";
 
@@ -47,50 +53,52 @@ async function fetchApi(query) {
     </div>
   </div>
     `;
-    cardWrapper.innerHTML = generatedHTML;
   });
-
+  if (results.length === 0) {
+    generatedHTML = "Sorry we don't have such a beer name!";
+  }
+  cardWrapper.innerHTML = generatedHTML;
   getModal(results);
 }
 
 fetchApi();
 
 function getModal(shows) {
-  let generated = "";
-  shows.map(show => {
-    generated += `
+  console.log(shows);
+  shows = shows[0];
+  let generated = `
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <div class="d-flex justify-content-between header-modal">
-          <h3>AB: ${show.ph}</h3>
-          <p>${show.name}</p>
+          <h3>AB: ${shows.ph}</h3>
+          <p>${shows.name}</p>
         </div>
         <hr />
         <div class="body-modal">
-          <p>With us since: <span class="text">${show.first_brewed}</span></p>
-          <p class="text">${show.description}</p>
+          <p>With us since: <span class="text">${shows.first_brewed}</span></p>
+          <p class="text">${shows.description}</p>
           <p>It goes great width:</p>
-          <p class="text">${show.food_pairing[0]}</p>
+          <p class="text">${shows.food_pairing[0]}</p>
         </div>
         <hr />
         <div class="footer-modal">
           <div class="row">
             <div class="col-lg-3">
               <p>Abv:<br>
-              <span class="text">${show.abv}</span>
+              <span class="text">${shows.abv}</span>
               </p>
             </div>
             <div class="col-lg-9">
               <p>
                 And Our tip:
-                <span class="text">${show.brewers_tips}</span>
+                <span class="text">${shows.brewers_tips}</span>
               </p>
             </div>
           </div>
         </div>
       </div>
  `;
-  });
+
   modalShow.innerHTML = generated;
 }
 
