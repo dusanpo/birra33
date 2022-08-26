@@ -13,8 +13,10 @@ document.addEventListener("click", function () {
 });
 
 inpSearch.addEventListener("change", () => {
+  
   let searchQuery = inpSearch.value.trim();
   fetchApi(searchQuery);
+  //inpSearch.value = "";
 });
 
 async function fetchApi(query) {
@@ -53,9 +55,11 @@ async function fetchApi(query) {
     </div>
   </div>
     `;
+    cardWrapper.classList.remove("not-found");
   });
   if (results.length === 0) {
-    generatedHTML = "Sorry we don't have such a beer name!";
+    generatedHTML = "Sorry, we don't have such a beer name!";
+    cardWrapper.classList.add("not-found");
   }
   cardWrapper.innerHTML = generatedHTML;
   getModal(results);

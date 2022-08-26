@@ -1,5 +1,5 @@
 body{
-    background: #bf431f;
+    background: $nav-bg-color;
   }
   body::before{
     display:block;
@@ -7,7 +7,7 @@ body{
    
   }
 .navbar {
-  background: #bf431f;
+  background: $nav-bg-color;
 
   .navbar-items {
     margin-right: 18rem;

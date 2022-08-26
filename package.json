@@ -2,7 +2,16 @@
   "name": "birra33",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.54.4"
+  },
+  "devDependencies": {},
   "scripts": {
     "start": "npm install && gulp"
   },
@@ -16,13 +25,5 @@
   "bugs": {
     "url": "https://github.com/dusanpo/birra33/issues"
   },
-  "homepage": "https://github.com/dusanpo/birra33#readme",
-  "dependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-terser": "^2.1.0",
-    "sass": "^1.54.4"
-  }
+  "homepage": "https://github.com/dusanpo/birra33#readme"
 }

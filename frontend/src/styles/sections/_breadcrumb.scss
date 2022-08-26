@@ -8,7 +8,7 @@
   .shop {
     font-family: "Alegreya", serif;
     font-size: 1.3em;
-    color: #d57f2c;
+    color: $card-botttom-color;
     font-weight: 700;
   }
   .current-page {
@@ -16,7 +16,7 @@
     color: #44322c;
     font-size: 1rem;
     i {
-      color: #d57f2c;
+      color: $card-botttom-color;
       margin: 0 3px;
      
     }
