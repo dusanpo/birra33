@@ -11,7 +11,7 @@
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   .modal-content {
-    color: #bf431f;
+    color: $nav-bg-color;
     background-color: #e3cfab;
     margin: 20% auto;
     width: 70%;
@@ -39,13 +39,13 @@
     .body-modal {
       padding: 0.8rem 1.3rem;
       .text{
-        color: #533c32;
+        color: $modal-text-color;
       }
     }
     .footer-modal {
       padding: 1rem;
       .text{
-        color: #533c32;
+        color: $modal-text-color;
       }
     
     }
