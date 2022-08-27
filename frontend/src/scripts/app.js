@@ -62,49 +62,49 @@ async function fetchApi(query) {
     cardWrapper.classList.add("not-found");
   }
   cardWrapper.innerHTML = generatedHTML;
-  getModal(results);
+  // getModal(results);
 }
 
 fetchApi();
 
-function getModal(shows) {
-  console.log(shows);
-  shows = shows[0];
-  let generated = `
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div class="d-flex justify-content-between header-modal">
-          <h3>AB: ${shows.ph}</h3>
-          <p>${shows.name}</p>
-        </div>
-        <hr />
-        <div class="body-modal">
-          <p>With us since: <span class="text">${shows.first_brewed}</span></p>
-          <p class="text">${shows.description}</p>
-          <p>It goes great width:</p>
-          <p class="text">${shows.food_pairing[0]}</p>
-        </div>
-        <hr />
-        <div class="footer-modal">
-          <div class="row">
-            <div class="col-lg-3">
-              <p>Abv:<br>
-              <span class="text">${shows.abv}</span>
-              </p>
-            </div>
-            <div class="col-lg-9">
-              <p>
-                And Our tip:
-                <span class="text">${shows.brewers_tips}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
- `;
+// function getModal(shows) {
+//   console.log(shows);
+//   shows = shows[0];
+//   let generated = `
+//     <div class="modal-content">
+//         <span class="close-btn">&times;</span>
+//         <div class="d-flex justify-content-between header-modal">
+//           <h3>AB: ${shows.ph}</h3>
+//           <p>${shows.name}</p>
+//         </div>
+//         <hr />
+//         <div class="body-modal">
+//           <p>With us since: <span class="text">${shows.first_brewed}</span></p>
+//           <p class="text">${shows.description}</p>
+//           <p>It goes great width:</p>
+//           <p class="text">${shows.food_pairing[0]}</p>
+//         </div>
+//         <hr />
+//         <div class="footer-modal">
+//           <div class="row">
+//             <div class="col-lg-3">
+//               <p>Abv:<br>
+//               <span class="text">${shows.abv}</span>
+//               </p>
+//             </div>
+//             <div class="col-lg-9">
+//               <p>
+//                 And Our tip:
+//                 <span class="text">${shows.brewers_tips}</span>
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//  `;
 
-  modalShow.innerHTML = generated;
-}
+//   modalShow.innerHTML = generated;
+// }
 
 function openModal() {
   modal.style.display = "block";

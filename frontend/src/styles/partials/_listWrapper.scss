@@ -17,14 +17,14 @@
       color: $modal-text-color;
       font-size: 1rem;
       font-weight: 600;
-      &:focus{
+      &:focus {
         box-shadow: none;
       }
-      &::placeholder{
-  opacity: 0.4;
+      &::placeholder {
+        opacity: 0.4;
       }
     }
-    hr{
+    hr {
       border: 1px solid #fff;
     }
   }
@@ -36,16 +36,17 @@
     font-weight: 700;
   }
   li {
+    width: 50%;
     list-style-type: none;
     color: $modal-text-color;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
     &:hover {
-      color: #e1a03a;
-      cursor: pointer;
+      color: $icon-color;
     }
     i {
-      color: #e1a03a;
+      color: $icon-color;
       margin-right: 0.5rem;
       font-size: 11px;
     }
