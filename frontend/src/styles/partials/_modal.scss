@@ -1,5 +1,4 @@
 .modal-style {
-
   font-family: "Alegreya", serif;
   font-size: 1.2rem;
   display: none;
@@ -17,23 +16,30 @@
     width: 70%;
     animation-name: modal;
     animation-duration: 1s;
-
-    .close-btn {
-      font-size: 2rem;
-      text-align: right;
-      padding: 0 1rem;
-
-      &:hover {
-        color: #000;
-        font-weight: 700;
-        text-decoration: none;
-        cursor: pointer;
-      }
-    }
     .header-modal {
-      padding: 0.5rem 1rem;
-      h3{
-        font-weight: bolder;
+      .close-btn {
+        font-size: 2rem;
+        float:right;
+        padding: 0 1rem;
+        color: #fff;
+        &:hover {
+          color: #000;
+          font-weight: 700;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+      .header-content{
+        padding-top: 3rem;
+        padding-left: 1rem;
+        h3{
+          font-weight: bolder;
+          margin-left: 6px;
+        }
+        .header-paragraph{
+          font-size: 1.5rem;
+          margin-right: -1rem;
+        }
       }
     }
     .body-modal {
