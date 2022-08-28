@@ -1,25 +1,29 @@
 .modal-style {
-  font-family: "Alegreya", serif;
-  font-size: 1.2rem;
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  &.show {
+    font-family: "Alegreya", serif;
+    font-size: 1.2rem;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  &.hide {
+    display: none;
+  }
   .modal-content {
     color: $nav-bg-color;
     background-color: #e3cfab;
     margin: 20% auto;
     width: 70%;
     animation-name: modal;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     .header-modal {
-      .close-btn {
+      .close-modal {
         font-size: 2rem;
-        float:right;
+        float: right;
         padding: 0 1rem;
         color: #fff;
         &:hover {
@@ -29,14 +33,14 @@
           cursor: pointer;
         }
       }
-      .header-content{
+      .header-content {
         padding-top: 3rem;
         padding-left: 1rem;
-        h3{
+        .header-title {
           font-weight: bolder;
           margin-left: 6px;
         }
-        .header-paragraph{
+        .header-name {
           font-size: 1.5rem;
           margin-right: -1rem;
         }
@@ -44,16 +48,19 @@
     }
     .body-modal {
       padding: 0.8rem 1.3rem;
-      .text{
+      .span-text,
+      .first-body-text,
+      .second-body-text {
         color: $modal-text-color;
+        font-weight: 500;
       }
     }
     .footer-modal {
       padding: 1rem;
-      .text{
+      .first-footer-text,
+      .second-footer-text {
         color: $modal-text-color;
       }
-    
     }
     hr {
       border: 1px solid #fff;

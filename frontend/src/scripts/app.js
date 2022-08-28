@@ -1,19 +1,41 @@
 const cardWrapper = document.querySelector(".card-wrapper");
-const modal = document.getElementById("modal");
-const modalShow = document.querySelector(".modal-style");
 const inpSearch = document.getElementById("inp-search");
+const modal = document.querySelector(".modal-style");
+const modalClose = document.querySelector(".close-modal");
+const headerTitle = document.querySelector(".header-title");
+const headerName = document.querySelector(".header-name");
+const spanText = document.querySelector(".span-text");
+const firstBodyText = document.querySelector(".first-body-text");
+const secondBodyText = document.querySelector(".second-body-text");
+const firstFooterText = document.querySelector(".first-footer-text");
+const secondFooterText = document.querySelector(".second-footer-text");
 
-document.addEventListener("click", function () {
-  const cards = document.querySelectorAll(".cards");
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].addEventListener("click", openModal);
+modalClose.addEventListener("click", () => {
+  modal.classList = "modal-style hide";
+});
+
+cardWrapper.addEventListener("click", e => {
+  if (e.target.classList[0] == "fa-solid") {
+    headerTitle.innerHTML =
+      e.target.parentElement.parentElement.parentElement.parentElement.children[0].value;
+    headerName.innerHTML =
+      e.target.parentElement.parentElement.parentElement.parentElement.children[1].value;
+    spanText.innerHTML =
+      e.target.parentElement.parentElement.parentElement.parentElement.children[2].value;
+    firstBodyText.innerHTML =
+      e.target.parentElement.parentElement.parentElement.parentElement.children[3].value;
+    secondBodyText.innerHTML =
+      e.target.parentElement.parentElement.parentElement.parentElement.children[4].value;
+    firstFooterText.innerHTML =
+      e.target.parentElement.parentElement.children[1].textContent.substring(1);
+    secondFooterText.innerHTML =
+      e.target.parentElement.parentElement.parentElement.parentElement.children[5].value;
+
+    modal.classList = "modal-style show";
   }
-
-  document.querySelector(".close-btn").addEventListener("click", closeModal);
 });
 
 inpSearch.addEventListener("change", () => {
-  
   let searchQuery = inpSearch.value.trim();
   fetchApi(searchQuery);
   //inpSearch.value = "";
@@ -31,7 +53,6 @@ async function fetchApi(query) {
   }
   let results = await response.json();
   console.log(results);
- 
 
   cardWrapper.innerHTML = "";
 
@@ -39,6 +60,12 @@ async function fetchApi(query) {
   results.map(result => {
     generatedHTML += `
     <div class="col-md-4">
+    <input type="hidden" value="AB: ${result.ph}">
+    <input type="hidden" value="${result.name}">
+    <input type="hidden" value="${result.first_brewed}">
+    <input type="hidden" value="${result.description}">
+    <input type="hidden" value="${result.food_pairing}">
+    <input type="hidden" value="${result.brewers_tips}">
     <div class="card text-center border-0 cards">
       <div class="card-body card-main">
         <img class="img" src=${result.image_url} alt="image" />
@@ -62,53 +89,6 @@ async function fetchApi(query) {
     cardWrapper.classList.add("not-found");
   }
   cardWrapper.innerHTML = generatedHTML;
-  // getModal(results);
 }
 
 fetchApi();
-
-// function getModal(shows) {
-//   console.log(shows);
-//   shows = shows[0];
-//   let generated = `
-//     <div class="modal-content">
-//         <span class="close-btn">&times;</span>
-//         <div class="d-flex justify-content-between header-modal">
-//           <h3>AB: ${shows.ph}</h3>
-//           <p>${shows.name}</p>
-//         </div>
-//         <hr />
-//         <div class="body-modal">
-//           <p>With us since: <span class="text">${shows.first_brewed}</span></p>
-//           <p class="text">${shows.description}</p>
-//           <p>It goes great width:</p>
-//           <p class="text">${shows.food_pairing[0]}</p>
-//         </div>
-//         <hr />
-//         <div class="footer-modal">
-//           <div class="row">
-//             <div class="col-lg-3">
-//               <p>Abv:<br>
-//               <span class="text">${shows.abv}</span>
-//               </p>
-//             </div>
-//             <div class="col-lg-9">
-//               <p>
-//                 And Our tip:
-//                 <span class="text">${shows.brewers_tips}</span>
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//  `;
-
-//   modalShow.innerHTML = generated;
-// }
-
-function openModal() {
-  modal.style.display = "block";
-}
-function closeModal() {
-  modal.style.display = "none";
-}
