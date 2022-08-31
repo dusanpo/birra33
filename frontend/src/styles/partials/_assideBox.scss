@@ -1,10 +1,11 @@
+@import "../abstracts/mixins/textFont";
+
 .asside-wrapper {
   background-color: #e3cfab;
   padding: 3rem 0;
   .input-wrapper {
-    h2 {
-      text-transform: uppercase;
-      font-family: "Alegreya", serif;
+    .search-title {
+      @include text-font(uppercase, $alegreya);
       color: $nav-bg-color;
       font-weight: bold;
       padding-bottom: 1rem;
@@ -28,18 +29,17 @@
       border: 1px solid $white-color;
     }
   }
-  p {
-    font-size: 18px;
-    text-transform: uppercase;
-    font-family: "Alegreya", serif;
+  .categories-title {
+    @include text-font(uppercase, $alegreya);
+    font-size: 1.2rem;
     color: $nav-bg-color;
     font-weight: 700;
   }
-  li {
+  .angle-right-icon {
     width: 50%;
     list-style-type: none;
     color: $modal-text-color;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     &:hover {
@@ -48,7 +48,7 @@
     i {
       color: $icon-color;
       margin-right: 0.5rem;
-      font-size: 11px;
+      font-size: 0.7rem;
     }
   }
 }
