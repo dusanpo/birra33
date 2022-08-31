@@ -2,11 +2,23 @@
   .food-form {
     margin-left: 2rem;
     width: 50%;
+    .food-title {
+      @include text-font(uppercase, $alegreya);
+      font-size: 1.2rem;
+      color: $nav-bg-color;
+      font-weight: 700;
+    }
     input[name="filter"] {
       accent-color: $nav-bg-color;
     }
-    .food-categories{
-        cursor:pointer;
+    .food-categories {
+      cursor: pointer;
+      color:$modal-text-color;
+      font-weight: 600;
+      font-size: 1rem;
+      &:hover {
+        color: $icon-color;
+      }
     }
   }
   hr {
