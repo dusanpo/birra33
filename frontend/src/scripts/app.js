@@ -1,22 +1,25 @@
 const cardWrapper = document.querySelector(".card-wrapper");
 const inpSearch = document.getElementById("inp-search");
 const modal = document.querySelector(".modal-style");
-const modalClose = document.querySelector(".close-modal");
 
-// modalClose.addEventListener("click", () => {
-//   modal.classList.replace("show", "hide");
-// });
+
+
 
 cardWrapper.addEventListener("click", e => {
-  // if (e.target.classList[0] == "fa-solid") {
-  //   modal.classList.replace("hide", "show");
-  // }
   const beerId = e.target.getAttribute("id");
   let beerModal = document.getElementById(`modal-${beerId}`);
-  beerModal.classList.replace("hide", "show");
+  beerModal.style.display = "block";
+
+  let modalClose = document.getElementById(`close-${beerId}`);
+  modalClose.addEventListener("click", closeModal);
+  function closeModal() {
+  beerModal.style.display= "none"; 
+  }
 
   feetchBeer(beerId);
 });
+
+
 
 inpSearch.addEventListener("change", () => {
   let searchQuery = inpSearch.value.trim();
@@ -58,10 +61,10 @@ async function fetchApi(query) {
       </div>
     </div>
   </div>
-  <div class="modal-style hide" id="modal-${result.id}">
+  <div class="modal-style" id="modal-${result.id}">
     <div class="modal-content">
       <div class="header-modal">
-        <span class="close-modal" id="${result.id}">&times;</span>
+        <span class="close-modal" id="close-${result.id}">&times;</span>
         <div class="d-flex justify-content-between header-content">
           <h3 class="header-title">Ab: ${result.ph}</h3>
           <p class="header-name">${result.name}</p>
@@ -70,11 +73,11 @@ async function fetchApi(query) {
       <hr />
       <div class="body-modal">
         <p>
-          With us since: <span class="span-text">${result.first_brewed}</span>
+          With us since: <span class="date-text">${result.first_brewed}</span>
         </p>
-        <p class="first-body-text">${result.description}</p>
+        <p class="description-text">${result.description}</p>
         <p>It goes great width:</p>
-        <p class="second-body-text">${result.food_pairing.join(", ")}</p>
+        <p class="food-pairing-text">${result.food_pairing.join(", ")}</p>
       </div>
       <hr />
       <div class="footer-modal">
@@ -82,13 +85,13 @@ async function fetchApi(query) {
           <div class="col-lg-3">
             <p>
               Abv:<br />
-              <span class="first-footer-text">${result.abv}</span>
+              <span class="result-text">${result.abv}</span>
             </p>
           </div>
           <div class="col-lg-9">
             <p>
               And Our tip:
-              <span class="second-footer-text">${result.brewers_tips}</span>
+              <span class="tips-text">${result.brewers_tips}</span>
             </p>
           </div>
         </div>

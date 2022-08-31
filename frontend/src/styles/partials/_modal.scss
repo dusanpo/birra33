@@ -1,18 +1,15 @@
 .modal-style {
-  &.show {
-    font-family: "Alegreya", serif;
-    font-size: 1.2rem;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  &.hide {
-    display: none;
-  }
+  display: "none";
+  font-family: "Alegreya", serif;
+  font-size: 1.2rem;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+
   .modal-content {
     color: $nav-bg-color;
     background-color: #e3cfab;
@@ -37,7 +34,7 @@
         padding-top: 3rem;
         padding-left: 1rem;
         .header-title {
-          font-weight:600;
+          font-weight: 600;
           margin-left: 6px;
         }
         .header-name {
@@ -48,17 +45,17 @@
     }
     .body-modal {
       padding: 0.8rem 1.3rem;
-      .span-text,
-      .first-body-text,
-      .second-body-text {
+      .date-text,
+      .description-text,
+      .food-pairing-text {
         color: $modal-text-color;
         font-weight: 500;
       }
     }
     .footer-modal {
       padding: 1rem;
-      .first-footer-text,
-      .second-footer-text {
+      .result-text,
+      .tips-text {
         color: $modal-text-color;
       }
     }
