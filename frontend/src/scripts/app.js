@@ -1,9 +1,9 @@
+const baseUrl = "https://api.punkapi.com/v2/beers";
 const cardWrapper = document.querySelector(".card-wrapper");
 const inpSearch = document.getElementById("inp-search");
-const modal = document.querySelector(".modal-style");
-
-
-
+const filterFood = document.getElementById("filter-food");
+let foodPairing = "";
+//const modal = document.querySelector(".modal-style");
 
 cardWrapper.addEventListener("click", e => {
   const beerId = e.target.getAttribute("id");
@@ -13,18 +13,38 @@ cardWrapper.addEventListener("click", e => {
   let modalClose = document.getElementById(`close-${beerId}`);
   modalClose.addEventListener("click", closeModal);
   function closeModal() {
-  beerModal.style.display= "none"; 
+    beerModal.style.display = "none";
   }
 
   feetchBeer(beerId);
 });
 
-
-
 inpSearch.addEventListener("change", () => {
   let searchQuery = inpSearch.value.trim();
   fetchApi(searchQuery);
   inpSearch.value = "";
+});
+
+filterFood.addEventListener("change", e => {
+  const value = e.target.value;
+  switch (value) {
+    case "all":
+      foodPairing = "";
+      break;
+    case "chicken":
+      foodPairing = "?food=chicken";
+      break;
+    case "cake":
+      foodPairing = "?food=cake";
+      break;
+    case "cheese":
+      foodPairing = "?food=cheese";
+      break;
+    case "salad":
+      foodPairing = "?food=salad";
+      break;
+  }
+  fetchApi();
 });
 
 async function fetchApi(query) {
@@ -35,7 +55,7 @@ async function fetchApi(query) {
       `https://api.punkapi.com/v2/beers?beer_name=${query}`
     );
   } else {
-    response = await fetch(`https://api.punkapi.com/v2/beers`);
+    response = await fetch(baseUrl + foodPairing);
   }
   let results = await response.json();
   console.log(results);

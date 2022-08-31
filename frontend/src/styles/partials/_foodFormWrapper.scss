@@ -1,0 +1,15 @@
+.food-form-wrapper {
+  .food-form {
+    margin-left: 2rem;
+    width: 50%;
+    input[name="filter"] {
+      accent-color: $nav-bg-color;
+    }
+    .food-categories{
+        cursor:pointer;
+    }
+  }
+  hr {
+    border: 1px solid $white-color;
+  }
+}
