@@ -2,25 +2,26 @@ const baseUrl = "https://api.punkapi.com/v2/beers";
 const cardWrapper = document.querySelector(".card-wrapper");
 const inpSearch = document.getElementById("inp-search");
 const filterFood = document.getElementById("filter-food");
-let foodPairing = "";
-//const modal = document.querySelector(".modal-style");
+let foodPairing = "",
+  ABVmin = "",
+  ABVmax = "";
 
-let minSlider = document.getElementById('min');
-let maxSlider = document.getElementById('max');
+let minSlider = document.getElementById("min");
+let maxSlider = document.getElementById("max");
 
-let outputMin = document.getElementById('min-value');
-let outputMax = document.getElementById('max-value');
+let outputMin = document.getElementById("min-value");
+let outputMax = document.getElementById("max-value");
 
 outputMin.innerHTML = minSlider.value;
 outputMax.innerHTML = maxSlider.value;
 
-minSlider.oninput = function(){
- outputMin.innerHTML=this.value;    
-}
+minSlider.oninput = function () {
+  outputMin.innerHTML = this.value;
+};
 
-maxSlider.oninput = function(){
- outputMax.innerHTML=this.value;    
-}
+maxSlider.oninput = function () {
+  outputMax.innerHTML = this.value;
+};
 
 cardWrapper.addEventListener("click", e => {
   const beerId = e.target.getAttribute("id");
@@ -64,15 +65,28 @@ filterFood.addEventListener("change", e => {
   fetchApi();
 });
 
+[minSlider, maxSlider].forEach(element => {
+  element.addEventListener("change", () => {
+    let termMin = minSlider.value;
+    let termMax = maxSlider.value;
+    ABVmin = "?abv_gt=" + termMin;
+    ABVmax = "&abv_lt=" + termMax;
+    fetchApi();
+  });
+});
+
 async function fetchApi(query) {
   let response;
-
   if (query) {
     response = await fetch(
       `https://api.punkapi.com/v2/beers?beer_name=${query}`
     );
-  } else {
+  } else if (foodPairing) {
     response = await fetch(baseUrl + foodPairing);
+  } else if (ABVmin) {
+    response = await fetch(baseUrl + ABVmin + ABVmax);
+  } else {
+    response = await fetch(baseUrl);
   }
   let results = await response.json();
   console.log(results);
@@ -86,7 +100,7 @@ async function fetchApi(query) {
     <div class="card text-center border-0 cards">
       <div class="card-body card-main" >
         <img class="img" src=${result.image_url} alt="image"/>
-        <p>$${result.abv}</p>
+        <p class="beer-price">$${result.abv}</p>
         <div class="logo">
           <i class="fa-solid fa-link fa-3x" id="${result.id}"></i>
         </div>
@@ -139,7 +153,7 @@ async function fetchApi(query) {
     cardWrapper.classList.remove("not-found");
   });
   if (results.length === 0) {
-    generatedHTML = "Sorry, we don't have such a beer name!";
+    generatedHTML = "Sorry, we don't have such a beer!";
     cardWrapper.classList.add("not-found");
   }
   cardWrapper.innerHTML = generatedHTML;

@@ -39,7 +39,7 @@
     width: 50%;
     list-style-type: none;
     color: $modal-text-color;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     &:hover {
@@ -48,7 +48,7 @@
     i {
       color: $icon-color;
       margin-right: 0.5rem;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
     }
   }
 }
