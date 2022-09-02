@@ -5,6 +5,23 @@ const filterFood = document.getElementById("filter-food");
 let foodPairing = "";
 //const modal = document.querySelector(".modal-style");
 
+let minSlider = document.getElementById('min');
+let maxSlider = document.getElementById('max');
+
+let outputMin = document.getElementById('min-value');
+let outputMax = document.getElementById('max-value');
+
+outputMin.innerHTML = minSlider.value;
+outputMax.innerHTML = maxSlider.value;
+
+minSlider.oninput = function(){
+ outputMin.innerHTML=this.value;    
+}
+
+maxSlider.oninput = function(){
+ outputMax.innerHTML=this.value;    
+}
+
 cardWrapper.addEventListener("click", e => {
   const beerId = e.target.getAttribute("id");
   let beerModal = document.getElementById(`modal-${beerId}`);
