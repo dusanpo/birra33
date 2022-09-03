@@ -3,11 +3,10 @@
     padding-left: 2rem;
     padding-bottom: 2.5rem;
     width: 16rem;
-    .range-title{
+    .range-title {
       @include text-font(uppercase, $alegreya);
       color: $nav-bg-color;
       font-size: 1.2rem;
-      font-weight: bold;
       padding-left: 10px;
     }
     .min-max-value {
@@ -16,7 +15,7 @@
       width: 90%;
       max-width: 200px;
       margin: 0 auto;
-     padding-bottom: 1rem;
+      padding-bottom: 1rem;
       .min {
         float: left;
       }
