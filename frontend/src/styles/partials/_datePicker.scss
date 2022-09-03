@@ -1,0 +1,21 @@
+.date-picker-wrapper {
+  .date-filters {
+  padding-left: 1.9rem;
+  .date-range-title{
+    color: $modal-text-color;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+    .date-input {
+      width: 90%;
+      height: 2.1rem;
+      border-radius: 5px;
+      padding: 0.5rem;
+      border: 1px solid $modal-text-color;
+      background-color: $hover-color;
+    }
+  }
+  hr {
+    border: 1px solid $white-color;
+  }
+}

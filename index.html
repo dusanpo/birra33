@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -129,18 +129,20 @@
                   <p class="range-title">abv range</p>
                   <div class="min-max-value">
                     <div class="min">
-                      <label class="position-value">From:</label><span class="number-value" id="min-value"></span>
+                      <label class="position-value">From:</label
+                      ><span class="number-value" id="min-value"></span>
                     </div>
                     <div class="max">
-                      <label class="position-value">To:</label><span class="number-value" id="max-value"></span>
+                      <label class="position-value">To:</label
+                      ><span class="number-value" id="max-value"></span>
                     </div>
                   </div>
                   <div class="min-max-range">
                     <input
                       type="range"
-                      min="0"
+                      min="1"
                       max="25"
-                      value="0"
+                      value="1"
                       class="range"
                       id="min"
                     />
@@ -154,8 +156,31 @@
                     />
                   </div>
                 </div>
-                <hr>
+                <hr />
               </div>
+
+              <div class="date-picker-wrapper pb-4">
+                <div class="date-filters pb-4">
+                  <p class="date-range-title">Brewed after</p>
+                  <input
+                    type="month"
+                    min="2007-01"
+                    max="2014-12"
+                    id="after"
+                    class="date-input mb-3"
+                  />
+                  <p class="date-range-title">Brewed before</p>
+                  <input
+                    type="month"
+                    min="2007-02"
+                    max="2015-12"
+                    id="before"
+                    class="date-input"
+                  />
+                </div>
+                <hr />
+              </div>
+
               <ul>
                 <p class="categories-title">Categories</p>
                 <li class="angle-right-icon">

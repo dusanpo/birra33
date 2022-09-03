@@ -7,22 +7,21 @@
     .search-title {
       @include text-font(uppercase, $alegreya);
       color: $nav-bg-color;
-      font-weight: bold;
       padding-bottom: 1rem;
     }
     .input-field {
       width: 80%;
       margin: auto;
-      border: 1px solid rgb(173, 166, 166);
+      border: 1px solid $modal-text-color;
+      background-color: $hover-color;
       margin-bottom: 2rem;
       color: $modal-text-color;
       font-size: 1rem;
-      font-weight: 600;
       &:focus {
         box-shadow: none;
       }
       &::placeholder {
-        opacity: 0.4;
+        opacity: 0.8;
       }
     }
     hr {
@@ -33,7 +32,6 @@
     @include text-font(uppercase, $alegreya);
     font-size: 1.2rem;
     color: $nav-bg-color;
-    font-weight: 700;
   }
   .angle-right-icon {
     width: 50%;

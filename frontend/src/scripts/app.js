@@ -1,10 +1,14 @@
 const baseUrl = "https://api.punkapi.com/v2/beers";
 const cardWrapper = document.querySelector(".card-wrapper");
-const inpSearch = document.getElementById("inp-search");
+const searchByName = document.getElementById("inp-search");
 const filterFood = document.getElementById("filter-food");
+const inputBrewedDates = document.querySelectorAll(".date-input");
+
 let foodPairing = "",
   ABVmin = "",
-  ABVmax = "";
+  ABVmax = "",
+  brewedAfter = "",
+  brewedBefore = "";
 
 let minSlider = document.getElementById("min");
 let maxSlider = document.getElementById("max");
@@ -18,7 +22,6 @@ outputMax.innerHTML = maxSlider.value;
 minSlider.oninput = function () {
   outputMin.innerHTML = this.value;
 };
-
 maxSlider.oninput = function () {
   outputMax.innerHTML = this.value;
 };
@@ -37,10 +40,10 @@ cardWrapper.addEventListener("click", e => {
   feetchBeer(beerId);
 });
 
-inpSearch.addEventListener("change", () => {
-  let searchQuery = inpSearch.value.trim();
+searchByName.addEventListener("change", () => {
+  let searchQuery = searchByName.value.trim();
   fetchApi(searchQuery);
-  inpSearch.value = "";
+  searchByName.value = "";
 });
 
 filterFood.addEventListener("change", e => {
@@ -75,6 +78,19 @@ filterFood.addEventListener("change", e => {
   });
 });
 
+inputBrewedDates.forEach(input => {
+  input.addEventListener("change", e => {
+    let value = e.target.value;
+    let date = `${value.substring(5, 7)}-${value.substring(0, 4)}`;
+    if (e.target.id === "after") {
+      brewedAfter = "?brewed_after=" + date;
+    } else {
+      brewedBefore = "&brewed_before=" + date;
+    }
+    fetchApi();
+  });
+});
+
 async function fetchApi(query) {
   let response;
   if (query) {
@@ -86,7 +102,7 @@ async function fetchApi(query) {
   } else if (ABVmin) {
     response = await fetch(baseUrl + ABVmin + ABVmax);
   } else {
-    response = await fetch(baseUrl);
+    response = await fetch(baseUrl + brewedAfter + brewedBefore);
   }
   let results = await response.json();
   console.log(results);
@@ -95,14 +111,15 @@ async function fetchApi(query) {
 
   let generatedHTML = "";
   results.map(result => {
+  const {image_url, abv, id, ph, name, first_brewed, description, food_pairing, brewers_tips} = result;
     generatedHTML += `
     <div class="col-md-4">
     <div class="card text-center border-0 cards">
       <div class="card-body card-main" >
-        <img class="img" src=${result.image_url} alt="image"/>
-        <p class="beer-price">$${result.abv}</p>
+        <img class="img" src=${image_url} alt="image"/>
+        <p class="beer-price">$${abv}</p>
         <div class="logo">
-          <i class="fa-solid fa-link fa-3x" id="${result.id}"></i>
+          <i class="fa-solid fa-link fa-3x" id="${id}"></i>
         </div>
       </div>
       <div class="card-footer card-bottom">
@@ -112,23 +129,23 @@ async function fetchApi(query) {
       </div>
     </div>
   </div>
-  <div class="modal-style" id="modal-${result.id}">
+  <div class="modal-style" id="modal-${id}">
     <div class="modal-content">
       <div class="header-modal">
-        <span class="close-modal" id="close-${result.id}">&times;</span>
+        <span class="close-modal" id="close-${id}">&times;</span>
         <div class="d-flex justify-content-between header-content">
-          <h3 class="header-title">Ab: ${result.ph}</h3>
-          <p class="header-name">${result.name}</p>
+          <h3 class="header-title">Ab: ${ph}</h3>
+          <p class="header-name">${name}</p>
         </div>
       </div>
       <hr />
       <div class="body-modal">
         <p>
-          With us since: <span class="date-text">${result.first_brewed}</span>
+          With us since: <span class="date-text">${first_brewed}</span>
         </p>
-        <p class="description-text">${result.description}</p>
+        <p class="description-text">${description}</p>
         <p>It goes great width:</p>
-        <p class="food-pairing-text">${result.food_pairing.join(", ")}</p>
+        <p class="food-pairing-text">${food_pairing.join(", ")}</p>
       </div>
       <hr />
       <div class="footer-modal">
@@ -136,13 +153,13 @@ async function fetchApi(query) {
           <div class="col-lg-3">
             <p>
               Abv:<br />
-              <span class="result-text">${result.abv}</span>
+              <span class="result-text">${abv}</span>
             </p>
           </div>
           <div class="col-lg-9">
             <p>
               And Our tip:
-              <span class="tips-text">${result.brewers_tips}</span>
+              <span class="tips-text">${brewers_tips}</span>
             </p>
           </div>
         </div>
