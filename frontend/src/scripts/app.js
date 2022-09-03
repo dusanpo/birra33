@@ -3,6 +3,7 @@ const cardWrapper = document.querySelector(".card-wrapper");
 const searchByName = document.getElementById("inp-search");
 const filterFood = document.getElementById("filter-food");
 const inputBrewedDates = document.querySelectorAll(".date-input");
+const scrollToTop = document.querySelector(".scroll-to-top");
 
 let foodPairing = "",
   ABVmin = "",
@@ -183,3 +184,11 @@ async function feetchBeer(id) {
   let results = await response.json();
   console.log(results);
 }
+
+window.addEventListener("scroll", () =>{
+  if(window.pageYOffset > 100){
+    scrollToTop.classList.add("active");
+  }else{
+    scrollToTop.classList.remove("active");
+  }
+})
