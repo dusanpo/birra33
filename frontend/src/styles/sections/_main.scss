@@ -4,6 +4,10 @@
   background-color: $hover-color;
 
   .card-wrapper {
+    @media (max-width: 768px) {
+      margin-left: 6rem;
+  
+    }
     &.not-found {
       color: $nav-bg-color;
       font-size: 2rem;
