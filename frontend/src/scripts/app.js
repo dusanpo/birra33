@@ -7,6 +7,7 @@ const scrollToTop = document.querySelector(".scroll-to-top");
 const pageNumber = document.getElementById("pageNumber");
 const prevPage = document.getElementById("prevPage");
 const nextPage = document.getElementById("nextPage");
+const loader = document.querySelector(".loader");
 
 let foodPairing = "",
   ABVmin = "",
@@ -234,3 +235,13 @@ window.addEventListener("scroll", () => {
     scrollToTop.classList.remove("active");
   }
 });
+
+window.addEventListener("load", () =>{
+  loader.classList.add("disappear");
+});
+
+function refreshPage(){
+  window.location.reload();
+} 
+
+
