@@ -27,6 +27,9 @@
     <title>Birra33 Project</title>
   </head>
   <body>
+    <div class="d-flex justify-content-center align-items-center loader">
+      <img src="./images/loader1.gif" alt="loader" />
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container-fluid">
         <a href="#" class="navbar-brand logo">
@@ -180,6 +183,11 @@
                 </div>
                 <hr />
               </div>
+                
+              <div class="text-center clear-btn-wrapper">
+                <button type="submit" onClick="refreshPage()" class="clear-button">Clear All</button>
+              </div>
+
 
               <ul>
                 <p class="categories-title">Categories</p>
@@ -212,7 +220,9 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="pagination d-flex justify-content-center align-items-center pb-4">
+          <div
+            class="pagination d-flex justify-content-center align-items-center pb-4"
+          >
             <button class="page" id="prevPage" disabled>PREV</button>
             <div class="current" id="pageNumber"></div>
             <button class="page" id="nextPage" disabled>NEXT</button>
