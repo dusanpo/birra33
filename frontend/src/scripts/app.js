@@ -1,15 +1,20 @@
-const baseUrl = "https://api.punkapi.com/v2/beers";
+const baseUrl = "https://api.punkapi.com/v2/beers?page=";
 const cardWrapper = document.querySelector(".card-wrapper");
 const searchByName = document.getElementById("inp-search");
 const filterFood = document.getElementById("filter-food");
 const inputBrewedDates = document.querySelectorAll(".date-input");
 const scrollToTop = document.querySelector(".scroll-to-top");
+const pageNumber = document.getElementById("pageNumber");
+const prevPage = document.getElementById("prevPage");
+const nextPage = document.getElementById("nextPage");
 
 let foodPairing = "",
   ABVmin = "",
   ABVmax = "",
   brewedAfter = "",
-  brewedBefore = "";
+  brewedBefore = "",
+  page = 1,
+  perPage = "&per_page=12";
 
 let minSlider = document.getElementById("min");
 let maxSlider = document.getElementById("max");
@@ -54,18 +59,19 @@ filterFood.addEventListener("change", e => {
       foodPairing = "";
       break;
     case "chicken":
-      foodPairing = "?food=chicken";
+      foodPairing = "&food=chicken";
       break;
     case "cake":
-      foodPairing = "?food=cake";
+      foodPairing = "&food=cake";
       break;
     case "cheese":
-      foodPairing = "?food=cheese";
+      foodPairing = "&food=cheese";
       break;
     case "salad":
-      foodPairing = "?food=salad";
+      foodPairing = "&food=salad";
       break;
   }
+  page = 1;
   fetchApi();
 });
 
@@ -73,8 +79,9 @@ filterFood.addEventListener("change", e => {
   element.addEventListener("change", () => {
     let termMin = minSlider.value;
     let termMax = maxSlider.value;
-    ABVmin = "?abv_gt=" + termMin;
+    ABVmin = "&abv_gt=" + termMin;
     ABVmax = "&abv_lt=" + termMax;
+    page = 1;
     fetchApi();
   });
 });
@@ -84,10 +91,11 @@ inputBrewedDates.forEach(input => {
     let value = e.target.value;
     let date = `${value.substring(5, 7)}-${value.substring(0, 4)}`;
     if (e.target.id === "after") {
-      brewedAfter = "?brewed_after=" + date;
+      brewedAfter = "&brewed_after=" + date;
     } else {
       brewedBefore = "&brewed_before=" + date;
     }
+    page = 1;
     fetchApi();
   });
 });
@@ -99,20 +107,44 @@ async function fetchApi(query) {
       `https://api.punkapi.com/v2/beers?beer_name=${query}`
     );
   } else if (foodPairing) {
-    response = await fetch(baseUrl + foodPairing);
+    response = await fetch(baseUrl + page + perPage + foodPairing);
   } else if (ABVmin) {
-    response = await fetch(baseUrl + ABVmin + ABVmax);
+    response = await fetch(baseUrl + page + perPage + ABVmin + ABVmax);
   } else {
-    response = await fetch(baseUrl + brewedAfter + brewedBefore);
+    response = await fetch(
+      baseUrl + page + perPage + brewedAfter + brewedBefore
+    );
   }
   let results = await response.json();
   console.log(results);
+
+  pageNumber.innerText = page;
+  if (page === 1) {
+    prevPage.disabled = true;
+  } else {
+    prevPage.disabled = false;
+  }
+  if (results.length < 12) {
+    nextPage.disabled = true;
+  } else {
+    nextPage.disabled = false;
+  }
 
   cardWrapper.innerHTML = "";
 
   let generatedHTML = "";
   results.map(result => {
-  const {image_url, abv, id, ph, name, first_brewed, description, food_pairing, brewers_tips} = result;
+    const {
+      image_url,
+      abv,
+      id,
+      ph,
+      name,
+      first_brewed,
+      description,
+      food_pairing,
+      brewers_tips,
+    } = result;
     generatedHTML += `
     <div class="col-md-4">
     <div class="card text-center border-0 cards">
@@ -176,6 +208,16 @@ async function fetchApi(query) {
   }
   cardWrapper.innerHTML = generatedHTML;
 }
+
+prevPage.addEventListener("click", () => {
+  page--;
+  fetchApi();
+});
+nextPage.addEventListener("click", () => {
+  page++;
+  fetchApi();
+});
+
 fetchApi();
 
 async function feetchBeer(id) {
@@ -185,10 +227,10 @@ async function feetchBeer(id) {
   console.log(results);
 }
 
-window.addEventListener("scroll", () =>{
-  if(window.pageYOffset > 100){
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 100) {
     scrollToTop.classList.add("active");
-  }else{
+  } else {
     scrollToTop.classList.remove("active");
   }
-})
+});
