@@ -1,7 +1,8 @@
 @import "../abstracts/mixins/textFont";
+@import "../abstracts/mixins/sizeWeight";
 
 .asside-wrapper {
-  background-color: #e3cfab;
+  background-color: $asside-color;
   padding: 3rem 0;
   .input-wrapper {
     .search-title {
@@ -37,8 +38,7 @@
     width: 50%;
     list-style-type: none;
     color: $modal-text-color;
-    font-size: 1rem;
-    font-weight: 500;
+    @include size-weight(1rem, 600);
     cursor: pointer;
     &:hover {
       color: $icon-color;

@@ -1,3 +1,5 @@
+@import "../abstracts/mixins/sizeWeight";
+
 .food-form-wrapper {
   .food-form {
     margin-left: 2rem;
@@ -13,8 +15,7 @@
     .food-categories {
       cursor: pointer;
       color: $modal-text-color;
-      font-weight: 600;
-      font-size: 1rem;
+      @include size-weight(1rem, 600);
       &:hover {
         color: $icon-color;
       }

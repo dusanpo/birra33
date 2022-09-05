@@ -1,3 +1,5 @@
+@import "../abstracts/mixins/sizeWeight";
+
 .price-wrapper {
   .price-slider {
     padding-left: 2rem;
@@ -23,16 +25,14 @@
         float: right;
       }
       .position-value {
-        font-size: 1.1rem;
-        font-weight: 600;
+        @include size-weight(1.1rem, 600);
         float: left;
         margin-right: 5px;
         color: $modal-text-color;
         line-height: 1.6;
       }
       .number-value {
-        font-size: 1.1rem;
-        font-weight: 600;
+        @include size-weight(1.1rem, 600);
         color: $modal-text-color;
         text-align: center;
         display: inline-block;
