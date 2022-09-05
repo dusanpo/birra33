@@ -6,17 +6,15 @@
         border: none;
         background-color: $hover-color;  
         color: $modal-text-color;
-        font-size: 1rem;
-        font-weight: 600;
+        @include size-weight(1rem, 600);
         &:disabled{
             font-weight:400;
         }
     }
     .current{
-        padding: 10px 20px;
+        padding: 0.6rem 1.2rem;
         border-radius: 50%;
         border: 5px solid $card-botttom-color;
-        font-size: 20px;
-        font-weight: 600;
+        @include size-weight(1.2rem, 600);
     }
 }

@@ -1,22 +1,20 @@
-body{
-    background: $nav-bg-color;
-  }
-  body::before{
-    display:block;
-    content: "";
-   
-  }
+@import "../abstracts/mixins/sizeWeight";
+body {
+  background: $nav-bg-color;
+}
+body::before {
+  display: block;
+  content: "";
+}
 .navbar {
   background: $nav-bg-color;
 
   .navbar-items {
     margin-right: 18rem;
     .nav-item {
-      font-size: 1rem;
-      font-weight: 700;
-
+      @include size-weight(1rem, 600);
       .nav-link {
-        color: $hover-color
+        color: $hover-color;
       }
     }
   }

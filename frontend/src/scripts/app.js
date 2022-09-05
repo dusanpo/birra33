@@ -101,7 +101,17 @@ inputBrewedDates.forEach(input => {
   });
 });
 
+window.addEventListener("load", () => fetchApi());
+
+function displayLoading() {
+  loader.classList.remove("disappear");
+}
+function hideLoading() {
+  loader.classList.add("disappear");
+}
+
 async function fetchApi(query) {
+  displayLoading();
   let response;
   if (query) {
     response = await fetch(
@@ -117,6 +127,7 @@ async function fetchApi(query) {
     );
   }
   let results = await response.json();
+  hideLoading();
   console.log(results);
 
   pageNumber.innerText = page;
@@ -207,6 +218,7 @@ async function fetchApi(query) {
     generatedHTML = "Sorry, we don't have such a beer!";
     cardWrapper.classList.add("not-found");
   }
+
   cardWrapper.innerHTML = generatedHTML;
 }
 
@@ -236,12 +248,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-window.addEventListener("load", () =>{
-  loader.classList.add("disappear");
-});
-
-function refreshPage(){
+function refreshPage() {
   window.location.reload();
-} 
-
-
+}

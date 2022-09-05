@@ -3,8 +3,7 @@
   padding-left: 1.9rem;
   .date-range-title{
     color: $modal-text-color;
-    font-size: 1.1rem;
-    font-weight: 600;
+    @include size-weight(1.1rem, 600);
   }
     .date-input {
       width: 90%;
